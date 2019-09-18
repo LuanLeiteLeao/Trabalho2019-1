@@ -1,12 +1,19 @@
 package modelo;
 
 public class Artefato {
+	private int       id;
 	private String    nome;
 	private int       quantidade;
 	private String    tipo;
 	private String    urlImagem;
 	private String    descricao;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}
