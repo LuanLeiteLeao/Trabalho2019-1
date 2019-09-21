@@ -7,6 +7,7 @@ o banco de dados.
 */
 package dao;
 
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -157,8 +158,33 @@ public class DAOArtefato {
     }
 	
 	
-	public void iserirArtefato() {
+	public String deleteArtefato(Artefato artefato) {
+		//instrução SQL
 		
+        String strSQL = "DELETE FROM artefato WHERE id = ?" ;
+
+       
+       
+
+        try
+        {
+        	PreparedStatement stmt = con.prepareStatement(strSQL);
+        	stmt.setInt(1,artefato.getId());
+        	stmt.executeUpdate(); 
+        	   
+            
+           
+
+            stmt.close();
+            
+            return "O ID "+artefato.getId()+" foi Deletado";
+            
+        }
+
+        catch (SQLException e)
+        {
+            return e.getMessage();
+        }
 		
 	}
 	

@@ -22,6 +22,12 @@ public class Test {
 		 
 		 System.out.println(a.adiciona(art));
 		 
+
+	
+		 
+		 art.setId(1);
+         
+		 System.out.println(a.deleteArtefato(art)); 
 		 a.getTodosFuncionarios();
 	}
 
