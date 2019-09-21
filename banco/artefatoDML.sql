@@ -5,8 +5,8 @@ INSERT INTO artefato
 		tipo,
 		urlImagem
 		,descricao) VALUES 
-	('Maconha',10, 'Droga', 'null','não usa sa pora não'),
-	('Maconha',10, 'Droga', 'null','não usa sa pora não'),
+	('Passaportes falsos',10, 'Droga', 'null','não usa sa pora não'),
+	('Contas roubadas da Netflix',10, 'Documento', 'null','não usa sa pora não'),
 	('Maconha',10, 'Droga', 'null','não usa sa pora não'),
 	('Maconha',10, 'Droga', 'null','não usa sa pora não'),
 	('Maconha',10, 'Droga', 'null','não usa sa pora não'),

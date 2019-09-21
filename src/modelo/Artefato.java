@@ -8,6 +8,9 @@ public class Artefato {
 	private String    urlImagem;
 	private String    descricao;
 	
+	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -45,4 +48,17 @@ public class Artefato {
 		this.descricao = descricao;
 	}
 	
+
+	public void print() {
+		
+		
+			System.out.print(this.getId()+" ");
+			System.out.print(this.getNome()+" ");
+			System.out.print(this.getQuantidade()+" ");
+			System.out.print(this.getTipo()+" ");
+			System.out.print(this.getUrlImagem()+" ");
+			System.out.println(this.getDescricao());
+
+		
+	}
 }
