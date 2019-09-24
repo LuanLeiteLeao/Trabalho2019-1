@@ -2,24 +2,20 @@ package visao;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTabbedPane;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+
 
 public class Formulario extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -48,35 +44,30 @@ public class Formulario extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel pMenu = new JPanel();
-		contentPane.add(pMenu, BorderLayout.NORTH);
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.SOUTH);
 		
-		JButton btnNewButton_2 = new JButton("Cadastrar");
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new Cadastrar());
+		panel.add(btnCadastrar);
 		
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Cadastro c = new Cadastro();
-				add(c);
-			}
-		});
-		pMenu.add(btnNewButton_2);
 		
-		JButton btnNewButton_1 = new JButton("Editar");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		pMenu.add(btnNewButton_1);
+		JButton btnEditar = new JButton("Editar");
+		panel.add(btnEditar);
 		
-		JButton btnNewButton = new JButton("Excluir");
-		pMenu.add(btnNewButton);
-		
-		JPanel pLista = new JPanel();
-		contentPane.add(pLista, BorderLayout.CENTER);
-		
-		table = new JTable();
-		table.setBackground(Color.DARK_GRAY);
-		pLista.add(table);
+		JButton btnExcluir = new JButton("Excluir");
+		panel.add(btnExcluir);
 	}
-
+	
+	private class Cadastrar implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			FormCadastro fc = new FormCadastro();
+			//Cadastro c = new Cadastro();
+			//fc.add(c);
+		
+		}
+	}
 }
+	
+	
