@@ -52,14 +52,11 @@ public class Formulario extends JFrame {
 		contentPane.add(pMenu, BorderLayout.NORTH);
 		
 		JButton btnNewButton_2 = new JButton("Cadastrar");
-		btnNewButton_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-			}
-		});
+		
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Cadastro c = new Cadastro();
+				add(c);
 			}
 		});
 		pMenu.add(btnNewButton_2);
