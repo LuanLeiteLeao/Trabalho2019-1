@@ -22,6 +22,10 @@ public class ArtefatoTable extends AbstractTableModel {
         this.linhas = new ArrayList<>(artfact);
     }
 
+	public ArtefatoTable() {
+		
+	}
+
 	@Override
 	public int getColumnCount() {
 		return colunas.length;
