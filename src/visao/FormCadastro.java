@@ -11,8 +11,9 @@ import java.awt.FlowLayout;
 public class FormCadastro extends JFrame {
 
 	public FormCadastro() {
-		super("cadastro");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super("Cadastro");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setResizable(false);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		getContentPane().setLayout(new BorderLayout(0, 0));

@@ -24,7 +24,7 @@ public class Artefato {
 		this.nome = nome;
 		this.quantidade = quantidade;
 		this.tipo = tipo;
-		//this.urlImagem = urlImagem;
+		//this.urlImagem = urlImagem;DE
 		this.descricao = descricao;
 	}
 	
