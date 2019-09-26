@@ -25,7 +25,7 @@ public class Formulario extends JFrame {
 	private JTable table;
 	Controle c = new Controle();
 	List<Artefato> artlist = c.selectArtefato();
-	ArtefatoTable modelo = new ArtefatoTable(artlist);
+	ArtefatoTable modelo = new ArtefatoTable();
 
 	/**
 	 * Launch the application.
