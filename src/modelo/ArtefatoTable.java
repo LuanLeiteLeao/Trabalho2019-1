@@ -52,6 +52,24 @@ public class ArtefatoTable extends AbstractTableModel {
 	        return "";
 	}
 	
+	 public void setValueAt(Object aValue, int row, 
+			    int column) {
+			        Artefato u = linhas.get(row);
+			        if (column == COL_ID) {
+			            u.setId((Integer) aValue);
+			        } else if (column == COL_NOME) {
+			            u.setNome(aValue.toString());
+			        } else if (column == COL_QUANTIDADE) {
+			            u.setQuantidade(Integer.parseInt((String) aValue));
+			        } else if (column == COL_TIPO) {
+			            u.setTipo(aValue.toString());
+			        } else if (column == COL_URL) {
+			            u.setUrlImagem(aValue.toString());
+			        }else if (column == COL_DESCRICAO) {
+			            u.setDescricao(aValue.toString());
+			        }
+			    }
+	
 	public boolean isCellEditable(int rowIndex, int
 		    columnIndex) {
 		        return false;
