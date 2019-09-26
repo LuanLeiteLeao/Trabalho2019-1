@@ -14,5 +14,13 @@ public class Controle {
 		
 	}
 	
+	public String inserArtefato(Artefato artefato) {
+		
+		return dao.adiciona(artefato);  
+		
+	}
 	
+	public String deleteArtefato(Artefato artefato) {
+		return "";
+	}
 }
