@@ -11,6 +11,24 @@ public class Artefato {
 	
 	
 	
+	
+	
+	public Artefato() {
+		super();
+	}
+
+
+	public Artefato(String nome, int quantidade, String tipo, String descricao) {
+		
+		
+		this.nome = nome;
+		this.quantidade = quantidade;
+		this.tipo = tipo;
+		//this.urlImagem = urlImagem;
+		this.descricao = descricao;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}

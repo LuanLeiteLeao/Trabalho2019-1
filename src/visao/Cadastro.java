@@ -1,6 +1,7 @@
 package visao;
 
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextField;
@@ -11,14 +12,26 @@ import java.awt.GridLayout;
 import java.awt.CardLayout;
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+
 import java.awt.Font;
 import javax.swing.border.BevelBorder;
+
+import modelo.Artefato;
+
 import java.awt.Canvas;
+import java.awt.Button;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 public class Cadastro extends JPanel {
 	private JTextField txtNome;
 	private JTextField txtQuantidade;
 	private JTextField txtDescricao;
+	private TextField tfimagem;
+	private JComboBox cbtipo;
 
 	/**
 	 * Create the panel.
@@ -28,7 +41,7 @@ public class Cadastro extends JPanel {
 		
 		JPanel popupCadastro = new JPanel();
 		add(popupCadastro, BorderLayout.CENTER);
-		popupCadastro.setLayout(new MigLayout("", "[49.00][39.00,grow][10.00]", "[][][][][57.00][][][]"));
+		popupCadastro.setLayout(new MigLayout("", "[49.00][39.00,grow][10.00]", "[][][][][57.00][][129.00][][]"));
 		
 		JLabel lblCadastro = new JLabel("CADASTRO");
 		lblCadastro.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -60,19 +73,66 @@ public class Cadastro extends JPanel {
 		JLabel lblTipo = new JLabel("Tipo");
 		popupCadastro.add(lblTipo, "cell 1 3,alignx center");
 		
-		JComboBox cbtipo = new JComboBox();
+		cbtipo = new JComboBox();
 		popupCadastro.add(cbtipo, "cell 1 3,growx");
 		
 		txtDescricao = new JTextField();
 		popupCadastro.add(txtDescricao, "cell 1 4,grow");
 		txtDescricao.setColumns(10);
 		
+		Button btnImagem = new Button("Imagem");
+	//	btnImagem.addActionListener(new adicionarImagem());
+		popupCadastro.add(btnImagem, "cell 0 5");
+		
+		tfimagem = new TextField();
+		popupCadastro.add(tfimagem, "cell 1 5,growx,aligny baseline");
+		
+		JLabel lblImagem = new JLabel("");
+		popupCadastro.add(lblImagem, "cell 1 6,alignx left,growy");
+		
 		JButton btnSalvar = new JButton("Salvar");
-		popupCadastro.add(btnSalvar, "flowx,cell 1 6,alignx center");
+		btnSalvar.addActionListener(new salvaCadastro());
+		popupCadastro.add(btnSalvar, "flowx,cell 1 7,alignx center");
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		popupCadastro.add(btnCancelar, "cell 1 6,alignx right");
+		popupCadastro.add(btnCancelar, "cell 1 7,alignx right");
 
 	}
+	
+//	private class  adicionarImagem implements ActionListener {
+//
+//		@Override
+//		public void actionPerformed(ActionEvent arg0) {
+//			JFileChooser arquivo = new JFileChooser();
+//			arquivo.setDialogTitle("Selecione uma Imagem");
+//			arquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+//			
+//			int opc = arquivo.showOpenDialog(this);
+//			if(opc == JFileChooser.APPROVE_OPTION) {
+//				File file = new File("Caminho");
+//				file = arquivo.getSelectedFile();
+//				String filename = file.getAbsolutePath();
+//				tfimagem.setText(filename);
+//				
+//				ImageIcon.imagem = new ImageIcon(arquivo.getSelectedFile().getPath());
+//				
+//			
+//		}
+//		
+//			
+//		}
+	
+	private class salvaCadastro implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Artefato artfact = new Artefato(txtNome.toString(), Integer.parseInt(txtQuantidade.toString()) 
+					, cbtipo.getSelectedItem().toString(), txtDescricao.toString() );
+			System.out.print(artfact);
+	
+			
+			
+		}
+	}
+	
 
 }
