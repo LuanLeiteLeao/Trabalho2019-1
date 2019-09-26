@@ -9,7 +9,7 @@ public class Test {
 	public static void main(String[] args) throws SQLException {
 		
 		DAOArtefato a=DAOArtefato.getInstance();
-		 a.getTodosFuncionarios();
+		 a.selectArtefato();
 		 
 		 
 		 Artefato art = new Artefato();
@@ -28,7 +28,7 @@ public class Test {
 		 art.setId(1);
          
 		 System.out.println(a.deleteArtefato(art)); 
-		 a.getTodosFuncionarios();
+		 a.selectArtefato();
 	}
 
 }

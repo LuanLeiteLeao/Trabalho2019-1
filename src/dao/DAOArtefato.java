@@ -79,15 +79,15 @@ public class DAOArtefato {
 	
 	
 	//este metodo tem a fução de fazer a consulta e restornar uma lista do tipo da minha consulta
-	public void getTodosFuncionarios() {
+	public List<Artefato> selectArtefato() {
 		String sql = "select * from artefato";
-		
+		List<Artefato> artefatosList=new ArrayList<Artefato>();
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			
-			List<Artefato> artefatosList = new ArrayList<Artefato>();
+			
 			
 			while (rs.next()){
 				Artefato retornoBanco = new Artefato();
@@ -118,7 +118,7 @@ public class DAOArtefato {
 		
 		
 		
-		//return artefatosList;
+		return artefatosList;
 		
 	}
 	
