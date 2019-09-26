@@ -18,9 +18,9 @@ public class ArtefatoTable extends AbstractTableModel {
 	List<Artefato> linhas;
 	private String[] colunas = new String[] {"ID","NOME","QUANTIDADE","TIPO","URL","DESCRICAO"};
 	
-//	public ContatoTableModel(List<Artefato> artfact) {
-//        this.linhas = new ArrayList<>(artfact);
-//    }
+	public ArtefatoTable(List<Artefato> artfact) {
+        this.linhas = new ArrayList<>(artfact);
+    }
 
 	@Override
 	public int getColumnCount() {

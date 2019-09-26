@@ -4,10 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controle.Controle;
+import modelo.Artefato;
+import modelo.ArtefatoTable;
+
 import javax.swing.JButton;
 import javax.swing.JTable;
 
@@ -16,6 +22,10 @@ import javax.swing.JTable;
 public class Formulario extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
+	Controle c = new Controle();
+	List<Artefato> artlist = c.selectArtefato();
+	ArtefatoTable modelo = new ArtefatoTable(artlist);
 
 	/**
 	 * Launch the application.
@@ -58,6 +68,12 @@ public class Formulario extends JFrame {
 		
 		JButton btnExcluir = new JButton("Excluir");
 		panel.add(btnExcluir);
+		
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1, BorderLayout.NORTH);
+		
+		table = new JTable(modelo);
+		panel_1.add(table);
 	}
 	
 	private class Cadastrar implements ActionListener{
