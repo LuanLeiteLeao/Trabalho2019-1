@@ -31,6 +31,10 @@ public class ArtefatoTable extends AbstractTableModel {
 	public int getRowCount() {
 		return linhas.size();
 	}
+	
+	public String getColumnName(int columnIndex) {
+	    return colunas[columnIndex];
+	}
 
 	@Override
 	public Object getValueAt(int row, int column) {
