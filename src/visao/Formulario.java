@@ -24,8 +24,7 @@ public class Formulario extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	Controle c = new Controle();
-	List<Artefato> artlist = c.selectArtefato();
-	ArtefatoTable modelo = new ArtefatoTable(artlist);
+	
 
 	/**
 	 * Launch the application.
@@ -70,7 +69,10 @@ public class Formulario extends JFrame {
 		panel.add(btnExcluir);
 		
 		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.NORTH);
+		contentPane.add(panel_1, BorderLayout.CENTER);
+		
+		List<Artefato> artlist = c.selectArtefato();
+		ArtefatoTable modelo = new ArtefatoTable(artlist);
 		
 		table = new JTable(modelo);
 		panel_1.add(table);

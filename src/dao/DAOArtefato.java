@@ -29,7 +29,7 @@ public class DAOArtefato {
 	
 	private static DAOArtefato dao;
 	private Connection con;
-	public static final String SERVIDOR="172.18.0.3";
+	public static final String SERVIDOR="172.18.0.2";
 	public static final String BANCO_NOME="CUPAIB";
 	public static final String USUARIO_NOME="postgres";
 	public static final String USUARIO_SENHA="Postgres2018!";
@@ -99,8 +99,7 @@ public class DAOArtefato {
 				retornoBanco.setUrlImagem(rs.getString("urlImagem"));
 				retornoBanco.setDescricao(rs.getString("Descricao"));
 				
-				retornoBanco.print();
-				
+				artefatosList.add(retornoBanco);
 			}	
 			
 			rs.close();
