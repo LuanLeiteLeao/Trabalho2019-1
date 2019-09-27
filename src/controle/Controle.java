@@ -21,7 +21,6 @@ public class Controle {
 	}
 	
 	public String deleteArtefato(Artefato artefato) {
-		return "";
+		return dao.deleteArtefato(artefato);
 	}
 }
-//oi
