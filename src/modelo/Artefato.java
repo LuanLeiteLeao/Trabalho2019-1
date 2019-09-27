@@ -18,13 +18,13 @@ public class Artefato {
 	}
 
 
-	public Artefato(String nome, int quantidade, String tipo, String descricao) {
+	public Artefato(String nome, int quantidade, String tipo, String urlImagem, String descricao) {
 		
 		
 		this.nome = nome;
 		this.quantidade = quantidade;
 		this.tipo = tipo;
-		//this.urlImagem = urlImagem;DE
+		this.urlImagem = urlImagem;
 		this.descricao = descricao;
 	}
 	

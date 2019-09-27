@@ -126,7 +126,7 @@ public class Cadastro extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Artefato artfact = new Artefato(txtNome.toString(), Integer.parseInt(txtQuantidade.toString()) 
-					, cbtipo.getSelectedItem().toString(), txtDescricao.toString() );
+					, cbtipo.getSelectedItem().toString(),"1", txtDescricao.toString());
 			System.out.print(artfact);
 	
 			
