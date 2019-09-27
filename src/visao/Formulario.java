@@ -26,6 +26,9 @@ public class Formulario extends JFrame {
 	private JTable table;
 	Controle c = new Controle();
 	ArtefatoTable modelo;
+	JPanel panel_1;
+	JScrollPane scrollPane;
+	List<Artefato> artlist;
 	
 
 	/**
@@ -71,15 +74,15 @@ public class Formulario extends JFrame {
 		btnExcluir.addActionListener(new ExcluirArtefato());
 		panel.add(btnExcluir);
 		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		
-		List<Artefato> artlist = c.selectArtefato();
+		artlist = c.selectArtefato();
 		modelo = new ArtefatoTable(artlist);
 		
 		table = new JTable(modelo);
 	//	panel_1.add(table);
-		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane = new JScrollPane(table);
 		add(scrollPane);		
 	}
 	
@@ -98,6 +101,14 @@ public class Formulario extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			Artefato a = modelo.getObject(table.getSelectedRow());
 			c.deleteArtefato(a);
+			artlist = c.selectArtefato();
+			ArtefatoTable newModelo = new ArtefatoTable(artlist);
+			table.setModel(newModelo);
+			table.repaint();
+			
+			
+			
+			
 			
 		}
 	}

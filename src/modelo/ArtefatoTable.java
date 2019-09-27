@@ -60,6 +60,10 @@ public class ArtefatoTable extends AbstractTableModel {
 		return linhas.get(row);
 	}
 	
+	public void updateArtefatos() {
+        this.fireTableDataChanged(); 
+    }
+	
 	 public void setValueAt(Object aValue, int row, 
 			    int column) {
 			        Artefato u = linhas.get(row);
