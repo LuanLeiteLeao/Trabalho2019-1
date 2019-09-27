@@ -25,6 +25,7 @@ public class Formulario extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	Controle c = new Controle();
+	ArtefatoTable modelo;
 	
 
 	/**
@@ -67,13 +68,14 @@ public class Formulario extends JFrame {
 		panel.add(btnEditar);
 		
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ExcluirArtefato());
 		panel.add(btnExcluir);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		
 		List<Artefato> artlist = c.selectArtefato();
-		ArtefatoTable modelo = new ArtefatoTable(artlist);
+		modelo = new ArtefatoTable(artlist);
 		
 		table = new JTable(modelo);
 	//	panel_1.add(table);
@@ -88,6 +90,15 @@ public class Formulario extends JFrame {
 			//Cadastro c = new Cadastro();
 			//fc.add(c);
 		
+		}
+	}
+	
+	private class ExcluirArtefato implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Artefato a = modelo.getObject(table.getSelectedRow());
+			c.deleteArtefato(a);
+			
 		}
 	}
 }

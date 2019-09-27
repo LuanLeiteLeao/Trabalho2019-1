@@ -137,8 +137,7 @@ public class Cadastro extends JPanel {
 	private class fecharJanela implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
-			
+						
 		}
 	}
 	

@@ -56,6 +56,10 @@ public class ArtefatoTable extends AbstractTableModel {
 	        return "";
 	}
 	
+	public Artefato getObject(int row) {
+		return linhas.get(row);
+	}
+	
 	 public void setValueAt(Object aValue, int row, 
 			    int column) {
 			        Artefato u = linhas.get(row);
