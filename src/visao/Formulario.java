@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import controle.Controle;
@@ -75,7 +76,9 @@ public class Formulario extends JFrame {
 		ArtefatoTable modelo = new ArtefatoTable(artlist);
 		
 		table = new JTable(modelo);
-		panel_1.add(table);
+	//	panel_1.add(table);
+		JScrollPane scrollPane = new JScrollPane(table);
+		add(scrollPane);		
 	}
 	
 	private class Cadastrar implements ActionListener{
