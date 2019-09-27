@@ -27,7 +27,7 @@ public class Test {
 		 
 		 art.setId(1);
          
-		 System.out.println(a.deleteArtefato(art)); 
+		// System.out.println(a.deleteArtefato(art)); 
 		 a.selectArtefato();
 	}
 
