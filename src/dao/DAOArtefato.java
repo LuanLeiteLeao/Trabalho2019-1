@@ -188,6 +188,38 @@ public class DAOArtefato {
 	}
 	
 	
+	  public String alterArtefato(Artefato artefato) {
+	        String strSQL = "UPDATE  artefato SET  nome= ?, quantidade= ?, tipo= ?, urlImagem= ? ,descricao= ? where id = ?";
+	        		
+	      
+	        try {
+	        	
+	        	 PreparedStatement stmt = con.prepareStatement(strSQL);
+
+	 	        //seta os valores
+	        	 
+	        	 stmt.setString(1,artefato.getNome());
+	             stmt.setInt(2,artefato.getQuantidade());
+	             stmt.setString(3,artefato.getTipo());
+	             stmt.setString(4,artefato.getUrlImagem());
+	             stmt.setString(5,artefato.getDescricao());
+	 	        
+	             stmt.setInt(6,artefato.getId());
+	            
+	             //executa o codigo
+	 	        
+	            stmt.execute();
+	 	        stmt.close();
+	 	        
+	 	        return "Artefato do ID "+artefato.getId()+" Foi Alterado";
+				
+			} catch (SQLException e) {
+				return e.getMessage();
+			}
+	        
+	       
+	    }
+	
 	
 }
 

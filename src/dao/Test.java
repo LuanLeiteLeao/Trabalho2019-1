@@ -14,13 +14,14 @@ public class Test {
 		 
 		 Artefato art = new Artefato();
 		 
-		 art.setNome("123");
-         art.setQuantidade(1);
-         art.setTipo("0aa");
-         art.setUrlImagem("0aa");
-         art.setDescricao("0aa");
+		 art.setId(50000);
+		 art.setNome("0");
+         art.setQuantidade(100);
+         art.setTipo("0");
+         art.setUrlImagem("0");
+         art.setDescricao("0");
 		 
-		 System.out.println(a.adiciona(art));
+		 System.out.println(a.alterArtefato(art));
 		 
 
 	
