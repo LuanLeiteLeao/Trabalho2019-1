@@ -29,7 +29,7 @@ public class FormCadastro extends JFrame {
 		criaTela();
 		
 		
-		Cadastro c = new Cadastro();
+		Cadastro c = new Cadastro(art);
 		this.add(c);
 		setVisible(true);
 		

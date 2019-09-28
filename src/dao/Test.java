@@ -21,7 +21,7 @@ public class Test {
          art.setUrlImagem("0");
          art.setDescricao("0");
 		 
-		 System.out.println(a.alterArtefato(art));
+		 System.out.println(a.adiciona(art));
 		 
 
 	
