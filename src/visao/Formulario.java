@@ -68,6 +68,7 @@ public class Formulario extends JFrame {
 		
 		
 		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new Editar());
 		panel.add(btnEditar);
 		
 		JButton btnExcluir = new JButton("Excluir");
@@ -90,9 +91,23 @@ public class Formulario extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			FormCadastro fc = new FormCadastro();
+			
+			artlist = c.selectArtefato();
+			ArtefatoTable newModelo = new ArtefatoTable(artlist);
+			table.setModel(newModelo);
+			table.repaint();
 			//Cadastro c = new Cadastro();
 			//fc.add(c);
 		
+		}
+	}
+	
+	private class Editar implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			Artefato a = modelo.getObject(table.getSelectedRow());
+			FormCadastro fc = new FormCadastro(a);
+			
 		}
 	}
 	

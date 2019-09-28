@@ -8,11 +8,6 @@ public class Artefato {
 	private String    urlImagem;
 	private String    descricao;
 	
-	
-	
-	
-	
-	
 	public Artefato() {
 		super();
 	}
@@ -20,12 +15,12 @@ public class Artefato {
 
 	public Artefato(String nome, int quantidade, String tipo, String urlImagem, String descricao) {
 		
-		
-		this.nome = nome;
-		this.quantidade = quantidade;
-		this.tipo = tipo;
-		this.urlImagem = urlImagem;
-		this.descricao = descricao;
+		setNome(nome);
+		setQuantidade(quantidade);
+		setTipo(tipo);
+		setUrlImagem(urlImagem);
+		setDescricao(descricao);
+
 	}
 	
 	
