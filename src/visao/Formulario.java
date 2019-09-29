@@ -106,6 +106,7 @@ public class Formulario extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			Artefato a = modelo.getObject(table.getSelectedRow());
+			System.out.println(a.getId());
 			FormCadastro fc = new FormCadastro(a);
 			
 		}

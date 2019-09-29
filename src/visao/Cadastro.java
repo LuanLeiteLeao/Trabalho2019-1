@@ -33,6 +33,7 @@ public class Cadastro extends JPanel {
 	private JTextField txtDescricao;
 	private TextField tfimagem;
 	private JTextField txtTipo;
+	private Artefato artaux;
 
 	/**
 	 * Create the panel.
@@ -101,6 +102,7 @@ public class Cadastro extends JPanel {
 	}
 	
 	public Cadastro(Artefato art) {
+		artaux = art;
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel popupCadastro = new JPanel();
@@ -126,7 +128,8 @@ public class Cadastro extends JPanel {
 		lblQuantidade.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		popupCadastro.add(lblQuantidade, "flowx,cell 0 3,alignx left");
 		
-		txtQuantidade = new JTextField(art.getQuantidade());
+		txtQuantidade = new JTextField(Integer.toString(art.getQuantidade()));
+		
 		popupCadastro.add(txtQuantidade, "flowx,cell 1 3,alignx leading");
 		txtQuantidade.setColumns(10);
 		
@@ -208,7 +211,9 @@ public class Cadastro extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Artefato artfact = new Artefato(txtNome.getText(), Integer.parseInt(txtQuantidade.getText()), txtTipo.getText(), tfimagem.getText(), txtDescricao.getText() );
+			artfact.setId(artaux.getId());
 			Controle c = new Controle();
+			System.out.println(artfact.getId());
 			c.altealterArtefato(artfact);
 			
 			txtNome.setText("");
