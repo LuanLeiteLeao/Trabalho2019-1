@@ -29,6 +29,7 @@ public class Formulario extends JFrame {
 	JPanel panel_1;
 	JScrollPane scrollPane;
 	List<Artefato> artlist;
+	private JButton btnAtualizar;
 	
 
 	/**
@@ -69,6 +70,10 @@ public class Formulario extends JFrame {
 		
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new Editar());
+		
+		btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new atualizar());
+		panel.add(btnAtualizar);
 		panel.add(btnEditar);
 		
 		JButton btnExcluir = new JButton("Excluir");
@@ -84,31 +89,46 @@ public class Formulario extends JFrame {
 		table = new JTable(modelo);
 	//	panel_1.add(table);
 		scrollPane = new JScrollPane(table);
-		add(scrollPane);		
+		getContentPane().add(scrollPane);		
 	}
 	
+	private int acaoEditar () {
+		Artefato a = modelo.getObject(table.getSelectedRow());
+		FormCadastro fc = new FormCadastro(a);
+		return 1;
+	}
+	
+	private void refresh () {
+		artlist = c.selectArtefato();
+		ArtefatoTable newModelo = new ArtefatoTable(artlist);
+		table.setModel(newModelo);
+		table.repaint();
+		System.out.println("iu");
+	}
 	private class Cadastrar implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			FormCadastro fc = new FormCadastro();
-			
-			artlist = c.selectArtefato();
-			ArtefatoTable newModelo = new ArtefatoTable(artlist);
-			table.setModel(newModelo);
-			table.repaint();
-			//Cadastro c = new Cadastro();
-			//fc.add(c);
-		
+					
 		}
 	}
+	
+	private class atualizar implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			refresh();
+			
+		}
+	}
+	
 	
 	private class Editar implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			Artefato a = modelo.getObject(table.getSelectedRow());
-			System.out.println(a.getId());
-			FormCadastro fc = new FormCadastro(a);
-			
+			acaoEditar();
+			setEnabled(false);
+			refresh();
+			setEnabled(true);			
 		}
 	}
 	
@@ -117,10 +137,7 @@ public class Formulario extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			Artefato a = modelo.getObject(table.getSelectedRow());
 			c.deleteArtefato(a);
-			artlist = c.selectArtefato();
-			ArtefatoTable newModelo = new ArtefatoTable(artlist);
-			table.setModel(newModelo);
-			table.repaint();
+			refresh();
 			
 			
 			
