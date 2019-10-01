@@ -39,8 +39,21 @@ public class Cadastro extends JPanel {
 	 * Create the panel.
 	 */
 	public Cadastro() {
+		criaTela();
+	}
+	
+	public Cadastro(Artefato art) {
+		artaux = art;
+		criaTela();
+		txtNome.setText(art.getNome());
+		txtDescricao.setText(art.getDescricao());
+		txtQuantidade.setText(Integer.toString(art.getQuantidade()));
+		tfimagem.setText(art.getUrlImagem());
+		txtTipo.setText(art.getTipo());
+	}
+	
+	private void criaTela() {
 		setLayout(new BorderLayout(0, 0));
-		
 		JPanel popupCadastro = new JPanel();
 		add(popupCadastro, BorderLayout.CENTER);
 		popupCadastro.setLayout(new MigLayout("", "[49.00][39.00,grow][10.00]", "[][][][][57.00][119.00][42.00][][129.00][][]"));
@@ -92,78 +105,9 @@ public class Cadastro extends JPanel {
 		btnSalvar.addActionListener(new salvaCadastro());
 		popupCadastro.add(btnSalvar, "flowx,cell 1 9,alignx center");
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		popupCadastro.add(btnCancelar, "cell 1 9,alignx right");
-		
 		txtTipo = new JTextField();
 		popupCadastro.add(txtTipo, "cell 1 3,growx");
 		txtTipo.setColumns(10);
-
-	}
-	
-	public Cadastro(Artefato art) {
-		artaux = art;
-		setLayout(new BorderLayout(0, 0));
-		
-		JPanel popupCadastro = new JPanel();
-		add(popupCadastro, BorderLayout.CENTER);
-		popupCadastro.setLayout(new MigLayout("", "[49.00][39.00,grow][10.00]", "[][][][][57.00][119.00][42.00][][129.00][][]"));
-		
-		JLabel lblCadastro = new JLabel("CADASTRO");
-		lblCadastro.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		popupCadastro.add(lblCadastro, "cell 1 0");
-		
-		JSeparator separator = new JSeparator();
-		popupCadastro.add(separator, "cell 1 1");
-		
-		JLabel lblNome = new JLabel("Nome");
-		lblNome.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		popupCadastro.add(lblNome, "flowx,cell 0 2,alignx left");
-		
-		txtNome = new JTextField(art.getNome());
-		popupCadastro.add(txtNome, "cell 1 2,growx,aligny baseline");
-		txtNome.setColumns(10);
-		
-		JLabel lblQuantidade = new JLabel("Quantidade");
-		lblQuantidade.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		popupCadastro.add(lblQuantidade, "flowx,cell 0 3,alignx left");
-		
-		txtQuantidade = new JTextField(Integer.toString(art.getQuantidade()));
-		
-		popupCadastro.add(txtQuantidade, "flowx,cell 1 3,alignx leading");
-		txtQuantidade.setColumns(10);
-		
-		JLabel lblTipo = new JLabel("Tipo");
-		popupCadastro.add(lblTipo, "cell 1 3,alignx center");
-		
-		JLabel lblImagem_1 = new JLabel("Imagem");
-		popupCadastro.add(lblImagem_1, "cell 0 4");
-		
-		tfimagem = new TextField(art.getUrlImagem());
-		popupCadastro.add(tfimagem, "cell 1 4,growx,aligny baseline");
-		
-		JLabel lblDescrio = new JLabel("Descrição");
-		lblDescrio.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		popupCadastro.add(lblDescrio, "flowx,cell 0 5,alignx left");
-		
-		txtDescricao = new JTextField(art.getDescricao());
-		popupCadastro.add(txtDescricao, "cell 1 5,grow");
-		txtDescricao.setColumns(10);
-		
-		JLabel lblImagem = new JLabel("");
-		popupCadastro.add(lblImagem, "cell 1 8,alignx left,growy");
-		
-		JButton btnSalvar = new JButton("Editar");
-		btnSalvar.addActionListener(new editarCadastro());
-		popupCadastro.add(btnSalvar, "flowx,cell 1 9,alignx center");
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		popupCadastro.add(btnCancelar, "cell 1 9,alignx right");
-		
-		txtTipo = new JTextField(art.getTipo());
-		popupCadastro.add(txtTipo, "cell 1 3,growx");
-		txtTipo.setColumns(10);
-
 	}
 	
 	
@@ -191,6 +135,14 @@ public class Cadastro extends JPanel {
 //			
 //		}
 	
+	private void limparTela() {
+		txtNome.setText("");
+		txtQuantidade.setText("");
+		txtTipo.setText("");
+		tfimagem.setText("");
+		txtDescricao.setText("");
+	}
+	
 	private class salvaCadastro implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -198,11 +150,7 @@ public class Cadastro extends JPanel {
 			Controle c = new Controle();
 			c.inserArtefato(artfact);
 			
-			txtNome.setText("");
-			txtQuantidade.setText("");
-			txtTipo.setText("");
-			tfimagem.setText("");
-			txtDescricao.setText("");
+			limparTela();
 		
 		}
 	}
@@ -213,25 +161,12 @@ public class Cadastro extends JPanel {
 			Artefato artfact = new Artefato(txtNome.getText(), Integer.parseInt(txtQuantidade.getText()), txtTipo.getText(), tfimagem.getText(), txtDescricao.getText() );
 			artfact.setId(artaux.getId());
 			Controle c = new Controle();
-			System.out.println(artfact.getId());
+			
 			c.altealterArtefato(artfact);
 			
-			txtNome.setText("");
-			txtQuantidade.setText("");
-			txtTipo.setText("");
-			tfimagem.setText("");
-			txtDescricao.setText("");
+			limparTela();
 		
 		}
-	}
-	
-	
-	private class fecharJanela implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-						
-		}
-	}
-	
+	}	
 
 }

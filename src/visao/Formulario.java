@@ -70,14 +70,14 @@ public class Formulario extends JFrame {
 		
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new Editar());
-		
-		btnAtualizar = new JButton("Atualizar");
-		btnAtualizar.addActionListener(new atualizar());
-		panel.add(btnAtualizar);
 		panel.add(btnEditar);
 		
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ExcluirArtefato());
+		
+		btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new atualizar());
+		panel.add(btnAtualizar);
 		panel.add(btnExcluir);
 		
 		panel_1 = new JPanel();
@@ -92,10 +92,19 @@ public class Formulario extends JFrame {
 		getContentPane().add(scrollPane);		
 	}
 	
+	private void acaoIncluir() {
+		FormCadastro fc = new FormCadastro();
+	}
+	
 	private int acaoEditar () {
 		Artefato a = modelo.getObject(table.getSelectedRow());
 		FormCadastro fc = new FormCadastro(a);
 		return 1;
+	}
+	
+	private void acaoExcluir() {
+		Artefato a = modelo.getObject(table.getSelectedRow());
+		c.deleteArtefato(a);
 	}
 	
 	private void refresh () {
@@ -103,12 +112,15 @@ public class Formulario extends JFrame {
 		ArtefatoTable newModelo = new ArtefatoTable(artlist);
 		table.setModel(newModelo);
 		table.repaint();
-		System.out.println("iu");
 	}
+	
+	
 	private class Cadastrar implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			FormCadastro fc = new FormCadastro();
+			acaoIncluir();
+			refresh();
+			
 					
 		}
 	}
@@ -135,8 +147,7 @@ public class Formulario extends JFrame {
 	private class ExcluirArtefato implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Artefato a = modelo.getObject(table.getSelectedRow());
-			c.deleteArtefato(a);
+			acaoExcluir();
 			refresh();
 			
 			
