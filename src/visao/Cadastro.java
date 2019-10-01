@@ -34,12 +34,13 @@ public class Cadastro extends JPanel {
 	private TextField tfimagem;
 	private JTextField txtTipo;
 	private Artefato artaux;
-
+	private JButton btnSalvar;
 	/**
 	 * Create the panel.
 	 */
 	public Cadastro() {
 		criaTela();
+		btnSalvar.addActionListener(new salvaCadastro());
 	}
 	
 	public Cadastro(Artefato art) {
@@ -50,6 +51,7 @@ public class Cadastro extends JPanel {
 		txtQuantidade.setText(Integer.toString(art.getQuantidade()));
 		tfimagem.setText(art.getUrlImagem());
 		txtTipo.setText(art.getTipo());
+		btnSalvar.addActionListener(new editarCadastro());
 	}
 	
 	private void criaTela() {
@@ -101,8 +103,8 @@ public class Cadastro extends JPanel {
 		JLabel lblImagem = new JLabel("");
 		popupCadastro.add(lblImagem, "cell 1 8,alignx left,growy");
 		
-		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.addActionListener(new salvaCadastro());
+		btnSalvar = new JButton("Salvar");
+		
 		popupCadastro.add(btnSalvar, "flowx,cell 1 9,alignx center");
 		
 		txtTipo = new JTextField();
@@ -161,7 +163,6 @@ public class Cadastro extends JPanel {
 			Artefato artfact = new Artefato(txtNome.getText(), Integer.parseInt(txtQuantidade.getText()), txtTipo.getText(), tfimagem.getText(), txtDescricao.getText() );
 			artfact.setId(artaux.getId());
 			Controle c = new Controle();
-			
 			c.altealterArtefato(artfact);
 			
 			limparTela();

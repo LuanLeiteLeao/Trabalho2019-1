@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -15,8 +16,12 @@ import controle.Controle;
 import modelo.Artefato;
 import modelo.ArtefatoTable;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 
 
 
@@ -32,9 +37,6 @@ public class Formulario extends JFrame {
 	private JButton btnAtualizar;
 	
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -48,11 +50,30 @@ public class Formulario extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Formulario() {
 		super("CUPAIB");
+		
+		ImageIcon icone = new ImageIcon("Imagens/icone.png");
+		setIconImage(icone.getImage());
+		
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (UnsupportedLookAndFeelException e) {
+		    // handle exception
+		} catch (ClassNotFoundException e) {
+		    // handle exception
+		} catch (InstantiationException e) {
+		    // handle exception
+		} catch (IllegalAccessException e) {
+		    // handle exception
+		}
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 607, 503);
 		contentPane = new JPanel();
@@ -96,21 +117,40 @@ public class Formulario extends JFrame {
 		FormCadastro fc = new FormCadastro();
 	}
 	
-	private int acaoEditar () {
-		Artefato a = modelo.getObject(table.getSelectedRow());
+	private Artefato retornaObjetodaLinha() {
+		return modelo.getObject(table.getSelectedRow());
+	}
+	
+	private void acaoEditar() {
+		Artefato a = retornaObjetodaLinha();
 		FormCadastro fc = new FormCadastro(a);
-		return 1;
+		
+	}
+	
+	private int chamarTelaExcluir(Artefato a) {
+		ExcluirDialog ed = new ExcluirDialog();
+		return JOptionPane.showConfirmDialog(ed,"Tem certeza que deseja excluir o Artefato: \nNome: "+a.getNome()+"\nQuantidade: "
+				+a.getQuantidade()+"\nTipo: "+a.getTipo()+"\nDescrição: "+a.getDescricao()+"\nURL: "+a.getUrlImagem(),
+				"Excluir", JOptionPane.YES_NO_OPTION);
+		
+		 
 	}
 	
 	private void acaoExcluir() {
-		Artefato a = modelo.getObject(table.getSelectedRow());
-		c.deleteArtefato(a);
+		Artefato a = retornaObjetodaLinha();
+		
+		int resposta = chamarTelaExcluir(a);
+		
+		if (resposta == JOptionPane.YES_OPTION) {
+			c.deleteArtefato(a);
+	      }
+	     	
 	}
 	
 	private void refresh () {
 		artlist = c.selectArtefato();
-		ArtefatoTable newModelo = new ArtefatoTable(artlist);
-		table.setModel(newModelo);
+		modelo = new ArtefatoTable(artlist);
+		table.setModel(modelo);
 		table.repaint();
 	}
 	
@@ -129,7 +169,6 @@ public class Formulario extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			refresh();
-			
 		}
 	}
 	
@@ -149,11 +188,6 @@ public class Formulario extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			acaoExcluir();
 			refresh();
-			
-			
-			
-			
-			
 		}
 	}
 }
