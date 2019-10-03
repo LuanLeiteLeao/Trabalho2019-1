@@ -26,15 +26,17 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.DefaultComboBoxModel;
 
 public class Cadastro extends JPanel {
+	private String[] tipo= {"Treco leco","Bagulho","Coiso","Troço","Documento"};
 	private JTextField txtNome;
 	private JTextField txtQuantidade;
 	private JTextField txtDescricao;
 	private TextField tfimagem;
-	private JTextField txtTipo;
 	private Artefato artaux;
 	private JButton btnSalvar;
+	private JComboBox tipoComboBox;
 	/**
 	 * Create the panel.
 	 */
@@ -50,7 +52,7 @@ public class Cadastro extends JPanel {
 		txtDescricao.setText(art.getDescricao());
 		txtQuantidade.setText(Integer.toString(art.getQuantidade()));
 		tfimagem.setText(art.getUrlImagem());
-		txtTipo.setText(art.getTipo());
+		tipoComboBox.setSelectedItem(art.getTipo());
 		btnSalvar.addActionListener(new editarCadastro());
 	}
 	
@@ -107,9 +109,9 @@ public class Cadastro extends JPanel {
 		
 		popupCadastro.add(btnSalvar, "flowx,cell 1 9,alignx center");
 		
-		txtTipo = new JTextField();
-		popupCadastro.add(txtTipo, "cell 1 3,growx");
-		txtTipo.setColumns(10);
+		tipoComboBox = new JComboBox();
+		tipoComboBox.setModel(new DefaultComboBoxModel(this.tipo));
+		popupCadastro.add(tipoComboBox, "cell 1 3");
 	}
 	
 	
@@ -140,7 +142,7 @@ public class Cadastro extends JPanel {
 	private void limparTela() {
 		txtNome.setText("");
 		txtQuantidade.setText("");
-		txtTipo.setText("");
+		//txtTipo.setText("");
 		tfimagem.setText("");
 		txtDescricao.setText("");
 	}
@@ -148,7 +150,7 @@ public class Cadastro extends JPanel {
 	private class salvaCadastro implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Artefato artfact = new Artefato(txtNome.getText(), Integer.parseInt(txtQuantidade.getText()), txtTipo.getText(), tfimagem.getText(), txtDescricao.getText() );
+			Artefato artfact = new Artefato(txtNome.getText(), Integer.parseInt(txtQuantidade.getText()),tipoComboBox.getSelectedItem().toString(), tfimagem.getText(), txtDescricao.getText() );
 			Controle c = new Controle();
 			c.inserArtefato(artfact);
 			
@@ -160,7 +162,7 @@ public class Cadastro extends JPanel {
 	private class editarCadastro implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Artefato artfact = new Artefato(txtNome.getText(), Integer.parseInt(txtQuantidade.getText()), txtTipo.getText(), tfimagem.getText(), txtDescricao.getText() );
+			Artefato artfact = new Artefato(txtNome.getText(), Integer.parseInt(txtQuantidade.getText()), tipoComboBox.getSelectedItem().toString(), tfimagem.getText(), txtDescricao.getText() );
 			artfact.setId(artaux.getId());
 			Controle c = new Controle();
 			c.altealterArtefato(artfact);
